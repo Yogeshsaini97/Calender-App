@@ -9,22 +9,19 @@ const StatusShown = (props) => {
 
   useEffect(() => {
     fetchCalenderData();
-    // console.log(props.TodayDate);
+  
   });
 
   const fetchCalenderData = async () => {
     let data = await fetchApi("GET", uri, "");
-    // console.log(data);
-    // console.log(data.Data.length)
+  
 
     let DataLength = data.Data.length;
 
     let BoolValue = await data.Data.filter((data, index) => {
-      // console.log(DataLength)
-      // console.log(data.Date);
-      // console.log(index)
+     
       if (data.Date == props.TodayDate) {
-        console.log(data)
+    
         if(data.status=="present")
         {
             setPresent("present");
@@ -55,7 +52,7 @@ const StatusShown = (props) => {
     }
 
     let data = await fetchApi("POST", uri, payload);
-    console.log(data);
+
     if(data.message=="Present applied successfully!!")
     {
         alert("Congratulations! Task successfull!!");

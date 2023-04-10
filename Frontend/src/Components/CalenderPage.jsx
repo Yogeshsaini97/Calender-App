@@ -23,8 +23,7 @@ function CalenderPage() {
   const [date, setDate] = useState(new Date());
 
   function handleDateClick(date) {
-    console.log(date);
-    console.log(typeof date);
+ 
     setDate(date);
     setOpen(true);
   }

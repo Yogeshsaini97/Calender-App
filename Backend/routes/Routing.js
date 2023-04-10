@@ -9,20 +9,31 @@ const router = express.Router();
 
 router.post("/present",async (req,res)=>
 {
+  try {
 
-  let result = await new CalenderModel(req.body);
+    let result = await new CalenderModel(req.body);
   let SavedTodoData = await result.save();
-  console.log(result)
-  res.status(200).json({ message:"Present applied successfully!!",Data:result });
 
+  res.status(200).json({ message:"Present applied successfully!!",Data:result });
+  return
+    
+  } catch (error) {
+
+    res.status(500).json({message:"Internal Server error",error:error})
+    return;
+    
+  }
+
+  
 
 });
 
 router.get("/present",async (req,res)=>
 {
 
+try {
 
-let data= await CalenderModel.find();
+  let data= await CalenderModel.find();
    
    if(data.length==0)
    {
@@ -34,98 +45,24 @@ let data= await CalenderModel.find();
    
    res.status(200).json({message:"successfull",Data:data});
    return;
+  
+} catch (error) {
+
+  res.status(500).json({message:"Internal Server error",error:error})
+    return;
+
+
+  
+}
+
 
 });
 
-router.delete("/task/delete/:_id", async (req,resp)=>
-{
-   
-
-    try {
-
-      let data=await TodoModel.findOne(req.params);
-      console.log(data)
-    
-           let newData=await TodoModel.deleteOne(req.params);
-      resp.status(200).json({message:"Task Deleted successfully"});
-      return;
-  
-      
-  
-    
-  
-    } catch (error) {
-
-      console.log("no data")
-      resp.status(404).json({message:"There is no data with this id in the database"});
-      return
-      
-    }
-    
 
 
- 
-});
-
-router.put("/task/update/:_id", async (req,resp)=>
-{
-   
-
-    try {
-
-      let data=await TodoModel.findOne(req.params);
-      console.log(data)
-    
-      let newData=await TodoModel.updateOne(req.params,{$set:req.body});
-      resp.status(200).json({message:"Task updated successfully"});
-      return;
-  
-      
-  
-    
-  
-    } catch (error) {
-
-      console.log("no data")
-      resp.status(404).json({message:"There is no data with this id in the database"});
-      return
-      
-    }
-    
 
 
- 
-});
 
-router.get("/task/:_id", async (req,resp)=>
-{
-   
-
-    try {
-
-      let data=await TodoModel.findOne(req.params);
-      resp.status(200).json({message:"successfull",data:data});
-    
-          
-      
-      return;
-  
-      
-  
-    
-  
-    } catch (error) {
-
-
-      resp.status(404).json({message:"There is no data with this id in the database"});
-      return
-      
-    }
-    
-
-
- 
-});
 
 
 
