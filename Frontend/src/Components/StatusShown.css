@@ -1,0 +1,43 @@
+
+.present
+{
+    height: 75%;
+
+width: 75%;
+
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: limegreen;
+
+
+
+}
+.absent
+{
+    height: 75%;
+
+width: 75%;
+
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: red;
+
+
+
+}
+.notFound
+{
+    height: 75%;
+
+width: 75%;
+
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: grey;
+
+
+
+}
